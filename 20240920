@@ -1,1 +1,4 @@
-Number 
+Number 數字
+lable 
+input
+document(全域).getElementById
