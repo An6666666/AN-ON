@@ -11,7 +11,7 @@ a little easier
 */
 body {
 	margin: 0 ;
-	//width: 800px;
+	width: 800px;
 	padding: 0;
 	background: #7a2122 url('../images/body_bg.gif') repeat-x top;
 	font-family: Helvetica, sans-serif;
