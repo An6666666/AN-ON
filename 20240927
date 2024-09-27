@@ -10,3 +10,4 @@ var readline = require("readline-sync");
 偵錯要更改
 "program": "${file}",
 "console": "integratedTerminal"
+question加Int可以避免英文
