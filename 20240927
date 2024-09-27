@@ -2,3 +2,6 @@
 npm init建立資料庫
 npm install(安裝) readline-sync
 npm uninstall(卸載)
+偵錯要更改
+"program": "${file}",
+"console": "integratedTerminal"
