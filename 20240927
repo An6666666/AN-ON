@@ -2,6 +2,11 @@
 npm init建立資料庫
 npm install(安裝) readline-sync
 npm uninstall(卸載)
+readline-sync使用
+在需要使用的程式上打
+var readline = require("readline-sync");
+使用範例:
+    var a = readline. question("Please input ur weight(KG)?");
 偵錯要更改
 "program": "${file}",
 "console": "integratedTerminal"
