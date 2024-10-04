@@ -9,3 +9,14 @@ for(var i=0;i<4;i++){
   Ans[i] = Ans[rand];
   Ans[rand] = temp;
 }
+do{
+  var G=readline.questionInt("Please input 4 digits? ");
+}while(G<1000 || G>=10000);
+var Gstr = G.toString();
+//adjuge ?A?B
+var countA=0,countB=0;
+for(){//Ans[0]~A[3]
+   for(){//Gstr[0]!Gstr[3]
+
+   }
+}
