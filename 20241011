@@ -1,0 +1,27 @@
+m - sets margin
+p - sets padding
+可與下列組合
+t - sets margin-top or padding-top
+b - sets margin-bottom or padding-bottom
+s - sets margin-left or padding-left
+e - sets margin-right or padding-right
+x - sets both padding-left and padding-right or margin-left and margin-right
+y - sets both padding-top and padding-bottom or margin-top and margin-bottom
+
+size is one of:
+0 - sets margin or padding to 0
+1 - sets margin or padding to .25rem
+2 - sets margin or padding to .5rem
+3 - sets margin or padding to 1rem
+4 - sets margin or padding to 1.5rem
+5 - sets margin or padding to 3rem
+auto - sets margin to auto
+
+Ex: pt-5 設top-padding 為 3rem
+
+.col- (extra small devices - screen width < 576px)
+.col-sm- (small devices - screen width >= 576px)
+.col-md- (medium devices - screen width >=768px)
+.col-lg- (large devices - screen width >= 992px)
+.col-xl- (xlarge devices - screen width >= 1200px)
+.col-xxl- (xxlarge devices - screen width equal to or greater than 1400px)
