@@ -9,11 +9,23 @@ for(var i=0;i<4;i++){
   Ans[i] = Ans[rand];
   Ans[rand] = temp;
 }
-do{
-  var G=readline.questionInt("Please input 4 digits? ");
-}while(G<1000 || G>=10000);
-var Gstr = G.toString();
-var countA = 0, countB = 0;
+var AnsStr = Ans.join('');
+let attempts = 0;
+let correct = false;
+
+while (!correct) {
+    attempts++;
+    var G = readline.questionInt("Please enter 4 unique numbers");
+    
+    // 输入验证
+    while (G < 1000 || G >= 10000 || new Set(G.toString()).size !== 4) {
+        console.log("Invalid input. Please make sure the input is a 4-digit number and the number is unique");
+        G = readline.questionInt("Please enter 4 unique numbers");
+    }
+
+    var Gstr = G.toString();
+    
+    var countA = 0, countB = 0;
     var checkedAns = new Array(4).fill(false);
     var checkedG = new Array(4).fill(false);
 
@@ -30,8 +42,8 @@ var countA = 0, countB = 0;
             for (var j = 0; j < 4; j++) {
                 if (!checkedAns[j] && Gstr[i] === AnsStr[j]) {
                     countB++;
-                    checkedAns[j] = true; // 标记这个数字为已检查
-                    break; // 退出内层循环
+                    checkedAns[j] = true; 
+                    break; 
                 }
             }
         }
@@ -39,8 +51,8 @@ var countA = 0, countB = 0;
 
     console.log(`${countA}A ${countB}B`);
 
-    // 检查猜测是否正确
     if (countA === 4) {
         correct = true;
-        console.log(`恭喜你！你在${attempts}次尝试中猜到了数字 ${AnsStr}。`);
+        console.log(`恭喜你！你在${attempts}次嘗試中猜到了數字 ${AnsStr}。`);
     }
+}
