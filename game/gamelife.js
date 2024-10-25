@@ -27,12 +27,12 @@ class Life{
           var neighbor;
           for (let _row = 0; _row < this.row; _row++) {
             for (let _col = 0; _col < this.row; _col++) {
-                neighbor = neighborCount(_row, _col);
+                neighbor = this.neighborCount(_row, _col);
                 // update by 4 rules
-                if(getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){
+                if(this.getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){
                     nextGrid[_row][_col] = Dead;
                 }
-                if(getStatusAt(_row,_col)==Dead && neighbor==3){
+                if(this.getStatusAt(_row,_col)==Dead && neighbor==3){
                     nextGrid[_row][_col] = Live;
                 }
 
@@ -47,17 +47,17 @@ class Life{
 
     neighborCount = function(row, col){
         var count=0;
-        count += getStatusAt(row-1, col-1);
-        count += getStatusAt(row-1, col); 
-        count += getStatusAt(row-1, col+1); 
+        count += this.getStatusAt(row-1, col-1);
+        count += this.getStatusAt(row-1, col); 
+        count += this.getStatusAt(row-1, col+1); 
         
-        count += getStatusAt(row, col-1);
+        count += this.getStatusAt(row, col-1);
 
-        count += getStatusAt(row, col+1); 
+        count += this.getStatusAt(row, col+1); 
         
-        count += getStatusAt(row+1, col-1); 
-        count += getStatusAt(row+1, col); 
-        count += getStatusAt(row+1, col+1);      
+        count += this.getStatusAt(row+1, col-1); 
+        count += this.getStatusAt(row+1, col); 
+        count += this.getStatusAt(row+1, col+1);      
         return count;   
     }
     getStatusAt = function(row, col){
