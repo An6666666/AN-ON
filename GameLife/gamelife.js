@@ -64,6 +64,12 @@ class Life{
             return this.grid[row][col];
         }
     }
+    draw() {
+        console.clear(); // 清除控制台
+        for (let row of this.grid) {
+            console.log(row.map(cell => (cell === Live ? '█' : ' ')).join(''));
+        }
+    }
 }
 
 // Life.prototype.update= function(){
