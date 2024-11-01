@@ -1,7 +1,7 @@
 
 const Live = 1;
 const Dead = 0;
-
+var canvas = document.getElementById("map").getContext("2d");
 class Life {
     constructor(_row, _col) {
         this.row = _row;
