@@ -50,11 +50,8 @@ class Life{
         count += this.getStatusAt(row-1, col-1);
         count += this.getStatusAt(row-1, col); 
         count += this.getStatusAt(row-1, col+1); 
-        
         count += this.getStatusAt(row, col-1);
-
         count += this.getStatusAt(row, col+1); 
-        
         count += this.getStatusAt(row+1, col-1); 
         count += this.getStatusAt(row+1, col); 
         count += this.getStatusAt(row+1, col+1);      
