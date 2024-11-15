@@ -2,3 +2,4 @@ JSON.stringify 轉換數值和字串，可做到拷貝的用途
 At 可能表示這個方法是用來獲取某個時間點或條件下的狀態。
 npm install express 下載而外的裝包
 server.get("/profolio", (req,res)=>{       //DB        res.send("Profolio");  })
+var Profolio = DB.create(__dirname+"/profolio.db");
