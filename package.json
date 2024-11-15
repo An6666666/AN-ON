@@ -8,8 +8,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.21.1",
     "readline-sync": "^1.4.10"
   },
-  "devDependencies": {},
   "description": ""
 }
