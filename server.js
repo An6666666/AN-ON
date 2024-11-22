@@ -22,8 +22,13 @@ server.get("/services", (req, res)=>{
 
 server.get("/profolio", (req,res)=>{
       //DB
-
-      res.send("Profolio");
+      ProfolioDB.find({}).then(results=>{
+        if(results != null){
+             res.send(results);
+        }else{
+            res.send("Error!");
+        }
+      })
 
 })
 
