@@ -20,7 +20,7 @@ Profolio.insert({modal: "#portfolioModal1", imgSrc:"roundicons.png", heading:"Ro
 server.get("/services", (req, res)=>{
     //DB find
     var Services=[
-        {icon: "fa-shopping-cart", heading:"E-Commerce", text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."},
+        {icon: "fa-shopping-cart", heading:"C-Commerce", text:" ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."},
         {icon: "fa-laptop", heading:"Responsive Design", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."}
     ];
     res.send(Services);
