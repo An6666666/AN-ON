@@ -12,6 +12,19 @@ var MAZE = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];  // 起點(1,1)，終點(8,10)
 
+var MAZE2 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1],
+    [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1],
+    [1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1],
+    [1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1],
+    [1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+]; //1,1  end:8,10
+
 // 定義點 (Point) 類別
 class Point {
     constructor(_row, _col) {
@@ -31,6 +44,9 @@ var end = new Point(8, 10);
 // 創建堆疊和當前步驟
 var Stack = [];
 var step = start;
+var dir=[{x:-1,y:0}, {x:1,y:0},{x:0,y:-1},{x:0,y:1}];
+dir.sort((a,b)=>{return b.x-a.x});
+dir.sort((a, b) => { return Math.random() - 0.5 });
 
 // 繪製迷宮的函數
 const canvas = document.getElementById('canvas');
@@ -77,23 +93,23 @@ function go() {
     while (!step.isEnd()) {
         let moved = false;
         // 嘗試上、下、左、右移動
-        if (step.row > 0 && MAZE[step.row - 1][step.col] === 0) {  // 上
-            step = new Point(step.row - 1, step.col);
+        if (step.row > 0 && MAZE[step.row + dir[0].x][step.col+dir[0].y] === 0) {  // 上
+            step = new Point(step.row + dir[0].x, step.col + dir[0].y);
             MAZE[step.row][step.col] = 2;
             Stack.push(step);
             moved = true;
-        } else if (step.row < rows - 1 && MAZE[step.row + 1][step.col] === 0) {  // 下
-            step = new Point(step.row + 1, step.col);
+        } else if (step.row < rows - 1 && MAZE[step.row + dir[1].x][step.col+dir[1].y] === 0) {  // 下
+            step = new Point(step.row + dir[1].x, step.col + dir[1].y);
             MAZE[step.row][step.col] = 2;
             Stack.push(step);
             moved = true;
-        } else if (step.col > 0 && MAZE[step.row][step.col - 1] === 0) {  // 左
-            step = new Point(step.row, step.col - 1);
+        } else if (step.col > 0 && MAZE[step.row + dir[2].x][step.col+dir[2].y] === 0) {  // 左
+            step = new Point(step.row + dir[2].x, step.col + dir[2].y);
             MAZE[step.row][step.col] = 2;
             Stack.push(step);
             moved = true;
-        } else if (step.col < cols - 1 && MAZE[step.row][step.col + 1] === 0) {  // 右
-            step = new Point(step.row, step.col + 1);
+        } else if (step.col < cols - 1 && MAZE[step.row + dir[3].x][step.col+dir[3].y] === 0) {  // 右
+            step = new Point(step.row + dir[3].x, step.col + dir[3].y);
             MAZE[step.row][step.col] = 2;
             Stack.push(step);
             moved = true;
