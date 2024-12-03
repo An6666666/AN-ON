@@ -14,13 +14,10 @@ var myService = createApp({
 
 myService.Services.push({icon: "fa-lock", heading:"Web Security", text:"asdf adf adf"})
 
-createApp({
+var vueProfolio = createApp({
     data() {
         return{
-            Portfolio:[
-                {modal: "#portfolioModal1", imgSrc:"roundicons.png", heading:"Round Icons", text:"Graphic Design"},
-                {}
-            ]
+            Portfolio:[]
         }
     }
 }).mount("#portfolio")
@@ -32,4 +29,5 @@ $.ajax({
     success: results=>{
         vueProfolio.Portfolio = results;
     }
+
 })
