@@ -1,0 +1,35 @@
+#menu {
+    width: 1000px; /* 選單寬度 */
+    background: linear-gradient(#333, #000); /* 背景漸層 */
+    margin: 0 auto; /* 容器水平置中 */
+    padding: 0px; /* 無內邊距 */
+    float: none; /* 清除浮動 */
+    text-align: center; /* 內部內容居中 */
+}
+
+#menu ul {
+    list-style: none; /* 移除列表符號 */
+    padding: 0px; /* 無內邊距 */
+    margin: 0 auto; /* 水平置中清單 */
+    display: inline-block; /* 讓清單項目水平排列 */
+}
+
+#menu ul li {
+    display: inline; /* 清單項目水平排列 */
+}
+
+#menu ul li a {
+    color: #fff; /* 文字顏色 */
+    text-decoration: none; /* 無底線 */
+    height: 30px; /* 高度 */
+    width: 80px; /* 寬度 */
+    line-height: 30px; /* 文字垂直置中 */
+    display: inline-block; /* 使連結區域為塊狀 */
+    text-align: center; /* 文字水平置中 */
+    background: transparent; /* 背景透明 */
+}
+
+#menu a:hover {
+    color: rgb(255, 255, 255); /* 懸停文字顏色 */
+    background: linear-gradient(#000, #666); /* 懸停背景漸層 */
+}
