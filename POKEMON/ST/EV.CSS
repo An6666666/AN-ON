@@ -3,19 +3,23 @@
     background: linear-gradient(#333, #000); /* 背景漸層 */
     margin: 0 auto; /* 容器水平置中 */
     padding: 0px; /* 無內邊距 */
-    float: none; /* 清除浮動 */
-    text-align: center; /* 內部內容居中 */
+    display: flex; /* 使用 flexbox 來布局 */
+    justify-content: space-around; /* 平均分配選項 */
+    align-items: center; /* 垂直居中選項 */
+    height: 50px; /* 設置選單高度 */
 }
 
 #menu ul {
     list-style: none; /* 移除列表符號 */
     padding: 0px; /* 無內邊距 */
-    margin: 0 auto; /* 水平置中清單 */
-    display: inline-block; /* 讓清單項目水平排列 */
+    margin: 0; /* 無外邊距 */
+    display: flex; /* 使用 flexbox 來排列清單項目 */
+    justify-content: space-around; /* 清單項目平均分配 */
+    width: 100%; /* 確保 ul 撐滿寬度 */
 }
 
 #menu ul li {
-    display: inline; /* 清單項目水平排列 */
+    display: inline-block; /* 清單項目水平排列 */
 }
 
 #menu ul li a {
@@ -33,3 +37,37 @@
     color: rgb(255, 255, 255); /* 懸停文字顏色 */
     background: linear-gradient(#000, #666); /* 懸停背景漸層 */
 }
+#card-container {
+    display: flex; /* 使用 Flexbox 排列卡片 */
+    flex-wrap: wrap; /* 如果卡片超出寬度，允許換行 */
+    gap: 16px; /* 卡片之間的間距 */
+    justify-content: center; /* 水平置中 */
+  }
+
+  /* 單個卡片的樣式 */
+  .card {
+    width: 170px; /* 卡片寬度 */
+    height: 300px; /* 卡片高度 */
+    border: 1px solid #ccc; /* 卡片邊框 */
+    border-radius: 8px; /* 卡片圓角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 卡片陰影 */
+    text-align: center; /* 卡片內文字置中 */
+    overflow: hidden; /* 隱藏超出範圍的內容 */
+    background-color: #f9f9f9; /* 卡片背景色 */
+  }
+
+  /* 卡片圖片的樣式 */
+  .card img {
+    width: 100%; /* 圖片寬度佔滿卡片 */
+    height: 80%; /* 圖片高度佔卡片的 70% */
+    object-fit: cover; /* 圖片填滿卡片，保持比例裁切 */
+    border-bottom: 1px solid #ddd; /* 圖片和文字之間的分隔線 */
+  }
+
+  /* 卡片文字的樣式 */
+  .card p {
+    margin: 8px 0 0 0; /* 上方間距 */
+    font-size: 14px; /* 文字大小 */
+    font-weight: bold; /* 文字加粗 */
+    color: #333; /* 文字顏色 */
+  }

@@ -8,16 +8,15 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script async="" src="https://img.gamewith.jp/gds-packages/core/4.1.0/gds-core.min.js"></script>
     <link rel="stylesheet" href="ST/EV.css">
 </head>
 <body>
 <div id="menu" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin: 0 auto;">
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">首頁</a></li>
+        <li><a href="#">遊戲介紹</a></li>
+        <li><a href="#">牌組推薦</a></li>
     </ul>
 </div>
 <!-- Carousel -->
@@ -49,6 +48,81 @@
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
+<div id="filter">
+  <button type="button" class="btn btn-primary" onclick="filterCards('all')">所有卡片</button>
+  <button type="button" class="btn btn-primary" onclick="filterCards('Mewtwo EX')">超夢EX牌組</button>
+  <button type="button" class="btn btn-primary" onclick="filterCards('Pikachu EX')">皮卡丘EX牌組</button>
+  <button type="button" class="btn btn-primary" onclick="filterCards('Starmie Articuno EX')">寶石海星+急凍鳥EX牌組</button>
+</div>
+<div id="card-container"></div>
+<script>
+  const cards = [
+    { id: 1, type: 'Mewtwo EX', name: '超夢EX', img: 'IM/超夢.png' },
+    { id: 2, type: 'Mewtwo EX', name: '拉魯拉斯', img: 'IM/拉魯拉斯.png' },
+    { id: 3, type: 'Mewtwo EX', name: '奇魯莉安', img: 'IM/奇魯莉安.png' },
+    { id: 4, type: 'Mewtwo EX', name: '沙奈朵', img: 'IM/沙奈朵.png' },
+    { id: 5, type: 'Pikachu EX', name: '皮卡丘EX', img: 'IM/皮卡丘EX.png' },
+    { id: 6, type: 'Starmie Articuno EX', name: '寶石海星EX', img: 'IM/寶石海星EX.png' },
+    { id: 7, type: 'Starmie Articuno EX', name: '急凍鳥EX', img: 'IM/急凍鳥EX.png' },
+  ];
+
+  function renderCards(filter) {
+  const container = document.getElementById('card-container'); 
+  // 獲取用來顯示卡片的容器元素
+
+  container.innerHTML = ''; 
+  // 清空容器的內容，以便重新插入過濾後的卡片
+
+  // 先複製原始卡片清單
+  let filteredCards = [...cards];
+
+  // 如果過濾條件是 'rare'，加入額外的稀有卡片
+  if (filter === 'Mewtwo EX') {
+    filteredCards.push(
+      { id: 1, type: 'Mewtwo EX', name: '超夢EX', img: 'IM/超夢.png' },
+      { id: 2, type: 'Mewtwo EX', name: '拉魯拉斯', img: 'IM/拉魯拉斯.png' },
+      { id: 3, type: 'Mewtwo EX', name: '奇魯莉安', img: 'IM/奇魯莉安.png' },
+      { id: 4, type: 'Mewtwo EX', name: '沙奈朵', img: 'IM/沙奈朵.png' },
+    );
+  }
+
+  // 如果過濾條件是 'common'，加入額外的普通卡片
+  if (filter === 'common') {
+    filteredCards.push(
+      { id: 8, type: 'common', name: '普通卡3 (額外)', img: 'common3.jpg' },
+      { id: 9, type: 'common', name: '普通卡4 (額外)', img: 'common4.jpg' }
+    );
+  }
+
+  filteredCards = filter === 'all'  
+   ? filteredCards // 如果過濾條件是 'all'，選擇所有卡片
+   : filteredCards.filter(card => card.type === filter);
+    // 如果不是 'all'，則根據卡片的類型進行篩選，篩選出符合條件的卡片
+
+  filteredCards.sort((a, b) => {
+    if (a.id < b.id) return -1; // 按 ID 升序排列
+    if (a.id > b.id) return 1; 
+    return 0; // ID 相同則不變
+  });
+
+  filteredCards.forEach(card => {
+    // 遍歷篩選後的卡片清單，對每張卡片執行以下操作
+    container.innerHTML += `
+      <div class="card">
+        <img src="${card.img}" alt="${card.name}">
+        <!-- 將卡片的圖片顯示出來，img 屬性中使用卡片的 img 來指定圖片路徑 -->
+        <p>${card.name}</p>
+        <!-- 顯示卡片名稱 -->
+      </div>`;
+  });
+}
+
+
+  renderCards('all'); // 初始化顯示所有卡片
+  function filterCards(type) {
+    renderCards(type);
+  }
+</script>
 
 </body>
 </html>
