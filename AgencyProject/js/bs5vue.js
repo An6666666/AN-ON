@@ -9,7 +9,7 @@ var myService = createApp({
             ]
         }
     }
-}).mount("#services");
+}).mount("#servisce");
 
 
 myService.Services.push({icon: "fa-lock", heading:"Web Security", text:"asdf adf adf"})
