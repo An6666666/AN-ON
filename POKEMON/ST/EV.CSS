@@ -71,3 +71,15 @@
     font-weight: bold; /* 文字加粗 */
     color: #333; /* 文字顏色 */
   }
+
+  #filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 按鈕之間的間距 */
+    padding: 20px; /* 上下的內邊距 */
+    gap: 10px; /* 按鈕之間的間距 */
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+  }

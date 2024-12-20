@@ -9,7 +9,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script async="" src="https://img.gamewith.jp/gds-packages/core/4.1.0/gds-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+   
     <link rel="stylesheet" href="ST/EV.css">
+   
 </head>
 <body>
 <div id="menu" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin: 0 auto;">
@@ -55,42 +59,83 @@
   <button type="button" class="btn btn-primary" onclick="filterCards('Pikachu EX')">電系</button>
   <button type="button" class="btn btn-primary" onclick="filterCards('Starmie Articuno EX')">水系</button>
 </div>
-<div id="card-container">{{item.id}}{{item.type}}{{item.name}}{{item.img}}</div>
+<div id="card-container">
+  <div v-for="item in Services":key="item.id">
+    <div class="card">
+      <img :src="item.img" alt="Service Image">
+    </div>
+  </div>
+</div>
 <script>
+//   gsap.defaults({ease: "power3"});
+// gsap.set("#card-container", {y: 100});
 
-  function renderCards(filter) {
-  const container = document.getElementById('card-container'); 
-  // 獲取用來顯示卡片的容器元素
+// ScrollTrigger.batch("#card-container", {
+//   //interval: 0.1, // time window (in seconds) for batching to occur. 
+//   //batchMax: 3,   // maximum batch size (targets)
+//   onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: {each: 0.15, grid: [1, 3]}, overwrite: true}),
+//   onLeave: batch => gsap.set(batch, {opacity: 0, y: -100, overwrite: true}),
+//   onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, overwrite: true}),
+//   onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 100, overwrite: true})
+//   // you can also define things like start, end, etc.
+// });
 
-  container.innerHTML = ''; 
+
+// when ScrollTrigger does a refresh(), it maps all the positioning data which 
+// factors in transforms, but in this example we're initially setting all the ".box"
+// elements to a "y" of 100 solely for the animation in which would throw off the normal 
+// positioning, so we use a "refreshInit" listener to reset the y temporarily. When we 
+// return a gsap.set() in the listener, it'll automatically revert it after the refresh()!
+// ScrollTrigger.addEventListener("refreshInit", () => gsap.set("#card-container", {y: 0}))
+
+  // function renderCards(filter) {
+  // const container = document.getElementById('card-container'); 
+  // // 獲取用來顯示卡片的容器元素
+
+  // container.innerHTML = ''; 
   // 清空容器的內容，以便重新插入過濾後的卡片
 
   // 先複製原始卡片清單
-  let filteredCards = [...cards];
+  //let filteredCards = [...card-container];
 
-  filteredCards = filter === 'all'  
-   ? filteredCards // 如果過濾條件是 'all'，選擇所有卡片
-   : filteredCards.filter(card => card.type === filter);
+  // filteredCards = filter === 'all'  
+  //  ? filteredCards // 如果過濾條件是 'all'，選擇所有卡片
+  //  : filteredCards.filter(card => card.type === filter);
     // 如果不是 'all'，則根據卡片的類型進行篩選，篩選出符合條件的卡片
 
-  filteredCards.forEach(card => {
-    // 遍歷篩選後的卡片清單，對每張卡片執行以下操作
-    container.innerHTML += `
-      <div class="card">
-        <img src="${card.img}" alt="${card.name}">
-        <!-- 將卡片的圖片顯示出來，img 屬性中使用卡片的 img 來指定圖片路徑 -->
-        <p>${card.name}</p>
-        <!-- 顯示卡片名稱 -->
-      </div>`;
-  });
-}
+  // filteredCards.forEach(card => {
+  //   // 遍歷篩選後的卡片清單，對每張卡片執行以下操作
+  //   container.innerHTML += `
+  //     <div class="card">
+  //       <img src="${card.img}" alt="${card.name}">
+  //       <!-- 將卡片的圖片顯示出來，img 屬性中使用卡片的 img 來指定圖片路徑 -->
+  //       <p>${card.name}</p>
+  //       <!-- 顯示卡片名稱 -->
+  //     </div>`;
+  // });
+//}
 
-  renderCards('all'); // 初始化顯示所有卡片
-  function filterCards(type) {
-    renderCards(type);
-  }
+  // renderCards('all'); // 初始化顯示所有卡片
+  // function filterCards(type) {
+  //   renderCards(type);
+  // }
 </script>
+<script src="js/jquery.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="js/bs5vue.js"></script>
+<!-- <script>
+  const {createApp,ref}  = Vue;
 
+var myService = createApp({
+    data() {
+        return{
+            Services:[
+                { id: 40, type: 'grass', name: '坐騎山羊', img: 'IM/坐騎山羊.webp' },
+            ]
+        }
+    }
+}).mount("#card-container"); -->
+</script>
 </body>
 </html>
 

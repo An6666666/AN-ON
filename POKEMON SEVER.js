@@ -102,7 +102,7 @@ server.get("/card-container", (req, res)=>{
     res.send(Services);
 });
 
-server.get("/POKEMON profolio", (req,res)=>{
+server.get("/POKEMON", (req,res)=>{
       //DB
       ProfolioDB.find({}).then(results=>{
         if(results != null){
