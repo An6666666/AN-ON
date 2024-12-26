@@ -53,8 +53,8 @@
   </button>
 </div>
 <div id="filter">
-  <button type="button" class="btn btn-primary" onclick="filterCards('all')">所有卡片</button>
-  <button type="button" class="btn btn-primary" onclick="filterCards('grass')">草系</button>
+  <button type="button" class="btn btn-primary" value="all">所有卡片</button>
+  <button type="button" class="btn btn-primary" value="grass">草系</button>
   <button type="button" class="btn btn-primary" onclick="filterCards('Mewtwo EX')">超能系</button>
   <button type="button" class="btn btn-primary" onclick="filterCards('Pikachu EX')">電系</button>
   <button type="button" class="btn btn-primary" onclick="filterCards('Starmie Articuno EX')">水系</button>
@@ -97,11 +97,11 @@
   // 清空容器的內容，以便重新插入過濾後的卡片
 
   // 先複製原始卡片清單
-  //let filteredCards = [...card-container];
+  //let filteredCards = [...card];
 
-  // filteredCards = filter === 'all'  
-  //  ? filteredCards // 如果過濾條件是 'all'，選擇所有卡片
-  //  : filteredCards.filter(card => card.type === filter);
+   //filteredCards = filter === 'all'  
+   // ? filteredCards // 如果過濾條件是 'all'，選擇所有卡片
+   // : filteredCards.filter(card => card.type === filter);
     // 如果不是 'all'，則根據卡片的類型進行篩選，篩選出符合條件的卡片
 
   // filteredCards.forEach(card => {
