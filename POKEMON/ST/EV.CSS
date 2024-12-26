@@ -39,9 +39,10 @@
 }
 #card-container {
     display: flex; /* 使用 Flexbox 排列卡片 */
-    flex-wrap: wrap; /* 如果卡片超出寬度，允許換行 */
     gap: 16px; /* 卡片之間的間距 */
-    justify-content: center; /* 水平置中 */
+    align-items: center;  /* 垂直置中 */
+    justify-content: center;  /* 水平置中 */
+    flex-wrap: wrap;  /* 允許換行 */
   }
 
   /* 單個卡片的樣式 */
@@ -54,6 +55,8 @@
     text-align: center; /* 卡片內文字置中 */
     overflow: hidden; /* 隱藏超出範圍的內容 */
     background-color: #f9f9f9; /* 卡片背景色 */
+    opacity: 1;  /* 初始透明度為 0 */
+    will-change: transform;  /* 預計會改變變換屬性，優化性能 */
   }
 
   /* 卡片圖片的樣式 */
@@ -71,6 +74,12 @@
     font-weight: bold; /* 文字加粗 */
     color: #333; /* 文字顏色 */
   }
+
+  /* 卡片在滾動進入時的狀態（GSAP控制會覆蓋這部分） */
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
   #filter {
     display: flex;
