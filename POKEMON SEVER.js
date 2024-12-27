@@ -14,7 +14,7 @@ var DB = require("nedb-promises");
 var ProfolioDB = DB.create(__dirname+"/POKEMONprofoli.db");
 var ContactDB = DB.create(__dirname+"/contact.db");
  
-// ProfolioDB.insert([
+//ProfolioDB.insert([
 //    { id: 1, type: 'Mewtwo EX', name: '超夢EX', img: 'IM/超夢.png' },
 //    { id: 2, type: 'Mewtwo EX', name: '拉魯拉斯', img: 'IM/拉魯拉斯.png' },
 //    { id: 3, type: 'Mewtwo EX', name: '奇魯莉安', img: 'IM/奇魯莉安.png' },
@@ -55,7 +55,7 @@ var ContactDB = DB.create(__dirname+"/contact.db");
 //    { id: 39, type: 'grass', name: '坐騎小羊', img: 'IM/坐騎小羊.webp' },
 //    { id: 40, type: 'grass', name: '坐騎山羊', img: 'IM/坐騎山羊.webp' },
 // ])
-
+//
 server.get("/card-container", (req, res)=>{
     //DB find
     var Services=[
@@ -104,22 +104,23 @@ server.get("/card-container", (req, res)=>{
 
 server.get("/POKEMON", (req,res)=>{
       //DB
-      ProfolioDB.find({}).then(results=>{
-        if(results != null){
-             res.send(results);
-        }else{
-            res.send("Error!");
-        }
-      })
-      //ProfolioDB.find({})
-      //.sort({"id":1}) // 根據 `id` 欄位進行升序排序 (1 表示升序，-1 表示降序)
-      //.exec(function(err, data){
-      //  if (err){
-      //      response.end();
-      //      return;
-      //  }
-      //  console.log(data);
-      //});
+    //   ProfolioDB.find({}).then(results=>{
+    //     if(results != null){
+    //          res.send(results);
+    //     }else{
+    //         res.send("Error!");
+    //     }
+    //   })
+      ProfolioDB.find({}).sort({"id":1}).then(function(data, err){
+       if (err){
+           response.end();
+           return;
+       }
+       else{
+              res.send(data);
+       }
+       console.log(data);
+      });
 })
 
 server.listen(80, ()=>{
