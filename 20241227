@@ -1,0 +1,23 @@
+//const {createApp,ref,onUpdated}  = Vue;
+//onUpdated 優先加載完成
+//ex:
+//onUpdated(()=>{
+//         console.log("onUpdate");
+//        ......
+//        })
+//ProfolioDB的sort應用
+//sort可排序資料後回傳給
+//ex:
+//ProfolioDB.find({}).sort({"id":1}).then(function(data, err){
+//    if (err){
+//        response.end();
+//        return;
+//    }
+//    else{
+//           res.send(data);
+//    }
+//    console.log(data);
+//   });
+//排序方式
+//氣泡排序
+//插入是排序
