@@ -92,3 +92,59 @@
     padding: 10px 20px;
     font-size: 16px;
   }
+
+   /* 分隔線樣式 */
+   .b-example-divider {
+    width: 100%; /* 寬度 100% */
+    height: 3rem; /* 高度 3rem */
+    background-color: rgb(255, 255, 255); /* 背景顏色設為白色 */
+    border: solid rgb(255, 255, 255); /* 邊框顏色設為白色 */
+    border-width: 1px 0; /* 上下邊框寬 1px，左右邊框寬 0 */
+    box-shadow: inset 0 .5em 1.5em rgb(255, 255, 255), inset 0 .125em .5em rgb(255, 255, 255); /* 內陰影效果 */
+  }
+
+
+  /* 垂直分隔線樣式 */
+  .b-example-vr {
+    flex-shrink: 0; /* 防止元素縮小 */
+    width: 1.5rem; /* 寬度 1.5rem */
+    height: 100vh; /* 高度 100% 視窗高度 */
+  }
+
+  body {
+    background-color: black;
+    color: white; /* 設定文字顏色 */
+  }
+
+  .featurette-heading {
+    font-size: 2.5rem; /* 標題文字大小 */
+    text-align: center; /* 文字置中 */
+  }
+
+  .lead {
+    font-size: 1.25rem; /* 描述文字大小 */
+    line-height: 1.6; /* 行高 */
+    text-align: center; /* 文字置中 */
+  }
+
+  .featurette-image {
+    border-radius: 10px; /* 圖像邊框圓角 */
+  }
+
+          /* canvas 全頁覆蓋 */
+          canvas {
+            position: fixed; /* 固定定位，覆蓋整個頁面 */
+            top: 0;
+            left: 0;
+            width: 100%; /* 寬度 100% */
+            height: 100%; /* 高度 100% */
+            z-index: -1; /* 背景層級，確保其他內容顯示在前 */
+        }
+
+        /* 頁面內容樣式 */
+        .content {
+            position: relative; /* 相對定位，覆蓋在 canvas 上 */
+            z-index: 1; /* 確保內容在 canvas 之上 */
+            text-align: center;
+            padding: 50px;
+        }

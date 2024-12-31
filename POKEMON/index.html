@@ -12,18 +12,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <script src=>"https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"</script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="ST/EV.css">
    
 </head>
 <body>
-<div id="menu" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin: 0 auto;">
-    <ul>
-        <li><a href="#">首頁</a></li>
-        <li><a href="#">遊戲介紹</a></li>
-        <li><a href="#">牌組推薦</a></li>
+  
+  <canvas id="matrix"></canvas>
+
+  <div id="menu" class="carousel slide" data-bs-ride="carousel" style="width: 100%; margin: 0 auto; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: white;">
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+        <li style="margin: 0 15px;"><a href="#">首頁</a></li>
+        <li style="margin: 0 15px;"><a href="#GameDescription">遊戲介紹</a></li>
+        <li style="margin: 0 15px;"><a href="#">牌組推薦</a></li>
     </ul>
 </div>
+
+
+
 <!-- Carousel -->
 <div id="demo" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin: 0 auto;">
   <!-- Indicators/dots -->
@@ -53,13 +64,11 @@
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
-<div id="filter">
-  <button type="button" class="btn btn-primary" value="all">所有卡片</button>
-  <button type="button" class="btn btn-primary" value="grass">草系</button>
-  <button type="button" class="btn btn-primary" onclick="filterCards('Mewtwo EX')">超能系</button>
-  <button type="button" class="btn btn-primary" onclick="filterCards('Pikachu EX')">電系</button>
-  <button type="button" class="btn btn-primary" onclick="filterCards('Starmie Articuno EX')">水系</button>
-</div>
+
+<hr class="featurette-divider">
+
+<h1 class="text-center fw-bolder ">Illustrated cards</h1>
+
  <div id="card-container">
   <div v-for="item in Services" :key="item.id" class="card" :id="item.name" >
      
@@ -68,12 +77,109 @@
    
   </div>
  </div>
-<script>
 
+ <hr class="featurette-divider">
+
+ <section id="GameDescription">
+ <h1 class="text-center" class="fw-bolder">Game Description</h1>
+ 
+ <div class="row featurette justify-content-center">
+  <div class="col-md-7">
+    <h2 class="featurette-heading fw-normal lh-1">對戰介紹</h2>
+    <p class="lead">第一階段</p>
+    <p class="lead">雙方擲硬幣決定先攻和後攻，先攻方第一回合無法給寶可夢填能(不包括卡片效果給予的能量)</p>
+  </div>
+  <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" 
+             width="500" height="500" 
+             xmlns="http://www.w3.org/2000/svg" 
+             role="img" 
+             aria-label="Placeholder: 500x500" 
+             preserveAspectRatio="xMidYMid slice" 
+             focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+          <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+            500x500
+          </text>
+        </svg>
+  </div>
+</div>
+</section>
+
+<script>
+  // 取得畫布元素並取得其繪圖上下文
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  // 初始化畫布尺寸，將其設為視窗的寬高
+  function initializeCanvas() {
+      canvas.width = window.innerWidth; // 設定畫布寬度為視窗寬度
+      canvas.height = window.innerHeight; // 設定畫布高度為視窗高度
+  }
+
+  initializeCanvas(); // 初始呼叫畫布大小設定
+
+  const fontSize = 16; // 設定字體大小為 16 像素
+  let columns = Math.floor(canvas.width / fontSize); // 計算畫布可容納的列數
+  const characters = '★ ✰ ☆ ✩ ✫ ✬ ✭ ✮'; // 星星字符集
+  // 為每一列初始化下落數據，包含位置和方向
+  let drops = Array(columns).fill(0).map(() => ({
+      position: Math.floor(Math.random() * canvas.height / fontSize), // 隨機起始位置
+      direction: Math.random() > 0.5 ? 1 : -1, // 隨機方向（向上或向下）
+  }));
+
+  // 繪製畫布內容
+  function draw() {
+      // 設定背景為半透明黑色，創建拖影效果
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 設定字體樣式
+      ctx.font = `${fontSize}px monospace`;
+
+      // 遍歷每一列
+      for (let i = 0; i < drops.length; i++) {
+          // 從字符集中隨機選擇一個字符
+          const text = characters[Math.floor(Math.random() * characters.length)];
+          const x = i * fontSize; // 字符的 X 軸位置（根據列數計算）
+          const y = drops[i].position * fontSize; // 字符的 Y 軸位置
+
+          // 設定字體顏色為固定的青藍色調
+          ctx.fillStyle = `hsl(200, 100%, 50%)`;
+          ctx.fillText(text, x, y); // 繪製字符
+
+          // 若超出畫布邊界，隨機改變方向
+          if ((y > canvas.height || y < 0) && Math.random() > 0.975) {
+              drops[i].direction *= -1; // 反轉方向
+          }
+
+          // 根據方向更新字符的位置
+          drops[i].position += drops[i].direction;
+      }
+  }
+
+  // 每隔 50 毫秒重繪畫布
+  setInterval(draw, 50);
+
+  // 當視窗大小改變時，重新初始化畫布大小及列數
+  window.addEventListener('resize', () => {
+      initializeCanvas(); // 更新畫布大小
+      columns = Math.floor(canvas.width / fontSize); // 重新計算列數
+      // 為每列重新生成初始數據
+      drops = Array(columns).fill(0).map(() => ({
+          position: Math.floor(Math.random() * canvas.height / fontSize), // 隨機起始位置
+          direction: Math.random() > 0.5 ? 1 : -1, // 隨機方向
+      }));
+  });
 </script>
+
+
+
 <script src="js/jquery.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="js/bs5vue.js"></script>
+
 <!-- <script>
   const {createApp,ref}  = Vue;
 
